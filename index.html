@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -10,10 +11,22 @@
     <link rel="stylesheet" type="text/css" href="style.css">
     <title>Giphy Search Site</title>
 </head>
-<body>
-    
 
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-        <script type="text/javascript" src="app.js"></script>
+<body>
+    <div class="buttons"></div>
+<!-- form to search for user's preferred animal -->
+    <form>
+        <label for="animal-input">Search for an Animal</label>
+        <input type="text" id="animal-input">
+        <br>
+        <input id="add-animal" type="submit" value="SEARCH">
+    </form>
+
+    <div class="giphyImages"></div>
+
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script type="text/javascript" src="app.js"></script>
 </body>
+
 </html>
