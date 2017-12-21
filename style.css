@@ -1,0 +1,12 @@
+img{
+    border-style: 5px, solid, black;
+}
+
+button{
+    background: rgb(141, 165, 218);
+    font-family: 'Bungee', cursive;
+}
+
+p, label, input{
+    font-family: 'Bungee', cursive;
+}

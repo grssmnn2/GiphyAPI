@@ -8,23 +8,36 @@
     <link rel="stylesheet" type="text/css" href="reset.css">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u"
         crossorigin="anonymous">
+        <link href="https://fonts.googleapis.com/css?family=Bungee" rel="stylesheet">
     <link rel="stylesheet" type="text/css" href="style.css">
     <title>Giphy Search Site</title>
 </head>
 
 <body>
-    <div class="buttons"></div>
-<!-- form to search for user's preferred animal -->
-    <form>
-        <label for="animal-input">Search for an Animal</label>
-        <input type="text" id="animal-input">
-        <br>
-        <input id="add-animal" type="submit" value="SEARCH">
-    </form>
+    <div class="container">
+        <div class="row">
+            <div class="col">
+                <div class="buttons"></div>
+            </div>
+        </div>
+        <!-- form to search for user's preferred animal -->
+        <div class="row">
+            <div class="col">
+        <form>
+            <label for="animal-input">Search for an Animal</label>
+            <input type="text" id="animal-input">
+            <br>
+            <input id="add-animal" type="submit" value="SEARCH">
+        </form>
+    </div>
+    </div>
+    <div class="row">
+        <div class="col">
+        <div class="giphyImages"></div>
+        </div>
+    </div>
 
-    <div class="giphyImages"></div>
-
-
+    </div>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <script type="text/javascript" src="app.js"></script>
 </body>

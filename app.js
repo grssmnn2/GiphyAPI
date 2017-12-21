@@ -4,7 +4,8 @@ $(document).ready(function () {
 
     // pull data using ajax, reference using response.data
     function displayGiphy() {
-
+        // empty giphy div before adding ten new images
+        $(".giphyImages").empty();
         var animal = $(this).attr("data-name");
 
         // url to pull JSON data from Giphy API showing PG-13 and below with limit of 10
@@ -14,8 +15,9 @@ $(document).ready(function () {
             url: queryURL,
             method: "GET"
         }).done(function (response) {
+            // other loop added to create 10 giphy images total as requested in url
             for (var j = 0; j < response.data.length; j++) {
-                var animalDiv = $("<div class = 'animal'>");
+                var animalDiv = $("<div class = 'animal, col-md-3'>");
                 var rating = response.data[j].rating;
                 var ratingParagraph = $("<p>").html("Rating:" + rating);
                 animalDiv.append(ratingParagraph);
@@ -24,6 +26,7 @@ $(document).ready(function () {
                 animalDiv.append(image);
                 // send animalDiv to giphyImages Div on html page
                 $(".giphyImages").prepend(animalDiv);
+
             }
         });
 
@@ -62,25 +65,10 @@ $(document).ready(function () {
 
     addButton();
 
+    // write function to make images move on click
+    // write function to make images stop moving on other click
+
 });
 
 
 
-
-
-
-// function gotData(giphy) {
-//     for (var j = 0; j < giphy.data.length; j++) {
-//         $("<img>").append(giphy.data[j].url);
-//         $(".giphyImages").append("<img>");
-
-//     }
-
-     // when button is clicked, pull GIPHY data and add to giphy div
-    //  $(this).on("click", function () {
-    //     setup();
-    //     gotData();
-    // });
-
-// make sure 10 image show up with search, not moving
-// if user clicks an image, it begins moving, user clicks again and image stops moving
