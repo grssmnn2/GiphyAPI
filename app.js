@@ -17,16 +17,23 @@ $(document).ready(function () {
         }).done(function (response) {
             // other loop added to create 10 giphy images total as requested in url
             for (var j = 0; j < response.data.length; j++) {
+                // create div which spans three columns
                 var animalDiv = $("<div class = 'animal, col-md-3'>");
+                // add rating based on giphy data
                 var rating = response.data[j].rating;
+                // put rating into a paragraph and add text
                 var ratingParagraph = $("<p>").html("Rating:" + rating);
+                // add that rating paragraph to the animal div
                 animalDiv.append(ratingParagraph);
+                // add the image of the actual giph to show on page
                 var giphyImg = response.data[j].images.fixed_height_still.url;
+                // put that image into an image tag
                 var image = $("<img>").attr("src", giphyImg);
+                // add the image to the animal div
                 animalDiv.append(image);
                 // send animalDiv to giphyImages Div on html page
                 $(".giphyImages").prepend(animalDiv);
-
+               
             }
         });
 
@@ -39,16 +46,22 @@ $(document).ready(function () {
 
         // make for loop to create button for each member of array and put into buttons div
         for (var i = 0; i < animals.length; i++) {
+            // create button variable to reduce text
             var b = $("<button>");
+            // add the data-name attribute
             b.attr("data-name", animals[i]);
+            // add the animal class
             b.addClass("animal");
+            // add text to each button
             b.text(animals[i]);
+            // add each button to the button div
             $(".buttons").append(b);
         }
 
     }
     // when search button is clicked, add that animal to the array in button format
     $("#add-animal").on("click", function (event) {
+        // prevents webpage from navigating elsewhere
         event.preventDefault();
 
         // variable animal is whatever what entered by user in text box
@@ -64,6 +77,8 @@ $(document).ready(function () {
     $(document).on("click", ".animal", displayGiphy);
 
     addButton();
+
+    // $(document).on("click", ".animal", giphyImg.replace(response.data[j].images.fixed_height_still.url, response.data[j].images.preview.mp4));
 
     // write function to make images move on click
     // write function to make images stop moving on other click
