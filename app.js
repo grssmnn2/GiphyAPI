@@ -25,15 +25,20 @@ $(document).ready(function () {
                 var ratingParagraph = $("<p>").html("Rating:" + rating);
                 // add that rating paragraph to the animal div
                 animalDiv.append(ratingParagraph);
-                // add the image of the actual giph to show on page
+                // add the image of the actual giph to show on page (this one doesn't move)
                 var giphyImg = response.data[j].images.fixed_height_still.url;
+                var giphyMoving = response.data[j].images.fixed_height.url;
                 // put that image into an image tag
                 var image = $("<img>").attr("src", giphyImg);
+                image.attr("data-state", "still");
+                image.attr("data-still", giphyImg);
+                image.attr("data-animate", giphyMoving);
+                image.addClass("animatedAnimal");
                 // add the image to the animal div
                 animalDiv.append(image);
                 // send animalDiv to giphyImages Div on html page
                 $(".giphyImages").prepend(animalDiv);
-               
+            
             }
         });
 
@@ -77,10 +82,22 @@ $(document).ready(function () {
     $(document).on("click", ".animal", displayGiphy);
 
     addButton();
+    
+    $(document).on("click", ".animatedAnimal", move);
 
-    // $(document).on("click", ".animal", giphyImg.replace(response.data[j].images.fixed_height_still.url, response.data[j].images.preview.mp4));
-
+    function move(){
+    var state = $(this).attr("data-state");
+    if (state === "still"){
+        $(this).attr("src", $(this).attr("data-animate"));
+        $(this).attr("data-state", "animate");
+      }else{
+        $(this).attr("src", $(this).attr("data-still"));
+        $(this).attr("data-state", "still");
+      }
+    }
+    
     // write function to make images move on click
+   
     // write function to make images stop moving on other click
 
 });
