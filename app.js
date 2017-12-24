@@ -2,22 +2,23 @@ $(document).ready(function () {
     // make initial array of buttons for user to choose from
     var animals = ["Dog", "Cat", "Elephant", "Gorilla", "Giraffe", "Penguin", "Porcupine", "Rabbit"];
 
-    // pull data using ajax, reference using response.data
+    
     function displayGiphy() {
-        // empty giphy div before adding ten new images
+        // empty giphy div before adding ten new images (this otherwise adds images over and over without clearing page)
         $(".giphyImages").empty();
+        // animal variable gets the name of whatever button was clicked
         var animal = $(this).attr("data-name");
 
         // url to pull JSON data from Giphy API showing PG-13 and below with limit of 10
         var queryURL = "https://api.giphy.com/v1/gifs/search?api_key=DkTJLa4KpLC7I9SSyyOGt6AqDq1dyaGw&q=" + animal + "&limit=10&offset=0&rating=PG-13&lang=en";
-
+        // pull data using ajax, reference using response.data
         $.ajax({
             url: queryURL,
             method: "GET"
         }).done(function (response) {
             // other loop added to create 10 giphy images total as requested in url
             for (var j = 0; j < response.data.length; j++) {
-                // create div which spans three columns
+                // create div which spans three columns, given animal class name
                 var animalDiv = $("<div class = 'animal, col-md-3'>");
                 // add rating based on giphy data
                 var rating = response.data[j].rating;
@@ -27,9 +28,11 @@ $(document).ready(function () {
                 animalDiv.append(ratingParagraph);
                 // add the image of the actual giph to show on page (this one doesn't move)
                 var giphyImg = response.data[j].images.fixed_height_still.url;
+                // this link pulls moving giphy video
                 var giphyMoving = response.data[j].images.fixed_height.url;
-                // put that image into an image tag
+                // hold stil giphy in an image tag
                 var image = $("<img>").attr("src", giphyImg);
+                // give all images the attributes to create a still or moving giphy
                 image.attr("data-state", "still");
                 image.attr("data-still", giphyImg);
                 image.attr("data-animate", giphyMoving);
@@ -83,23 +86,23 @@ $(document).ready(function () {
 
     addButton();
     
+    // when any image with class "animatedAnimal" is clicked, run move function
     $(document).on("click", ".animatedAnimal", move);
 
     function move(){
+        // any clicked div with data-state
     var state = $(this).attr("data-state");
+    // if the data is still, change to moving
     if (state === "still"){
         $(this).attr("src", $(this).attr("data-animate"));
         $(this).attr("data-state", "animate");
-      }else{
+      }else{ 
+        //   if image is moving, change to still
         $(this).attr("src", $(this).attr("data-still"));
         $(this).attr("data-state", "still");
       }
     }
     
-    // write function to make images move on click
-   
-    // write function to make images stop moving on other click
-
 });
 
 
